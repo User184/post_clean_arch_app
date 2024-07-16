@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:placeholder_test/bloc_observer.dart';
-import 'package:placeholder_test/services/log_network.dart';
+import 'package:placeholder_test/src/posts/data/data_sources/interface_data_source/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/data_sources/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/repos/post_repo_impl.dart';
 import 'package:placeholder_test/src/posts/domain/repos/post_repo_base.dart';

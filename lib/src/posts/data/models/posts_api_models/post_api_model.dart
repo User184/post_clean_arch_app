@@ -14,4 +14,23 @@ class PostApiModel extends Post {
 
   factory PostApiModel.fromJson(Map<String, dynamic> json) =>
       _$PostApiModelFromJson(json);
+
+  PostApiModel copyWith({
+    final int? userId,
+    final int? id,
+    final String? title,
+    final String? body,
+  }) {
+    return PostApiModel(
+      userId: userId ?? this.userId,
+      id: id ?? this.id,
+      title: title ?? this.title,
+      body: body ?? this.body,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Post{userId: $userId, id: $id, title: $title, body: $body}';
+  }
 }

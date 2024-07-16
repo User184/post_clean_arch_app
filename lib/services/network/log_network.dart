@@ -9,7 +9,7 @@ class LogNetwork {
         requestHeader: true,
         responseHeader: true,
         requestBody: true,
-        maxWidth: 500,
+        maxWidth: 200,
       ),
     );
   }

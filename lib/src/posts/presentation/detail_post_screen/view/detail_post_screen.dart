@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:placeholder_test/constans/app_colors.dart';
-import 'package:placeholder_test/src/posts/data/models/posts_api_models/post_api_model.dart';
 import 'package:placeholder_test/src/posts/domain/entities/post.dart';
 import 'package:placeholder_test/src/posts/presentation/main_page/blocs/post_bloc.dart';
 import 'package:placeholder_test/src/posts/presentation/main_page/view/widgets/image_post.dart';

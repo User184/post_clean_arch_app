@@ -1,14 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:placeholder_test/main.dart';
-import 'package:placeholder_test/services/log_network.dart';
+import 'package:placeholder_test/services/network/log_network.dart';
+import 'package:placeholder_test/src/posts/data/data_sources/interface_data_source/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/models/comment_api_models/comment_api_model.dart';
 import 'package:placeholder_test/src/posts/data/models/posts_api_models/post_api_model.dart';
-import 'package:placeholder_test/services/locator_service.dart';
-
-abstract class RemoteDataSource {
-  Future<List<PostApiModel>?> fetchPosts();
-  Future<List<CommentApiModel>?> fetchComments({int? idPost});
-}
+import 'package:placeholder_test/services/di/locator_service.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final dio = service.get<Dio>();
