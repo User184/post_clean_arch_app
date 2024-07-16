@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:placeholder_test/src/error/network_error.dart';
 import 'package:placeholder_test/main.dart';
-import 'package:placeholder_test/services/network/log_network.dart';
+import 'package:placeholder_test/core/services/network/log_network.dart';
 import 'package:placeholder_test/src/posts/data/data_sources/interface_data_source/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/models/comment_api_models/comment_api_model.dart';
 import 'package:placeholder_test/src/posts/data/models/posts_api_models/post_api_model.dart';
-import 'package:placeholder_test/services/di/locator_service.dart';
+import 'package:placeholder_test/core/services/di/locator_service.dart';
 
 class RemoteDataSourceImpl implements RemoteDataSource {
   final dio = service.get<Dio>();
@@ -16,7 +17,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
 
     try {
       final response =
-          await dio.get('https://jsonplaceholder.typicode.com/posts');
+          await dio.get('https://jsonplaceholder.typicode.com/post');
       final listData = response.data;
       final listposts = <PostApiModel>[];
 
@@ -30,11 +31,12 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return listposts;
     } on DioException catch (e) {
       log.e('LOG fetchPosts network error: ${e.response?.statusCode}');
+      throw NetErrorsFactory.produce(e);
     } catch (e) {
       log.e('LOG fetchPosts error: $e');
       rethrow;
     }
-    return null;
+    // return null;
   }
 
   @override
@@ -56,10 +58,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       return listComments;
     } on DioException catch (e) {
       log.e('LOG fetchComments network error: ${e.response?.statusCode}');
+      throw NetErrorsFactory.produce(e);
     } catch (e) {
       log.e('LOG fetchComments error: $e');
       rethrow;
     }
-    return null;
   }
 }

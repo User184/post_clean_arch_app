@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:placeholder_test/src/error/network_error.dart';
 
 import 'package:placeholder_test/main.dart';
+import 'package:placeholder_test/src/error/presentation/blocs/error_bloc.dart';
 import 'package:placeholder_test/src/posts/domain/entities/comment.dart';
 import 'package:placeholder_test/src/posts/domain/entities/post.dart';
 import 'package:placeholder_test/src/posts/domain/usecases/get_comments.dart';
@@ -30,10 +32,12 @@ class PostState with _$PostState {
 class PostBloc extends Bloc<PostsEvent, PostState> {
   final GetPosts getPosts;
   final GetComments getComments;
+  final ErrorsBloc errorsBloc;
 
   PostBloc({
     required this.getPosts,
     required this.getComments,
+    required this.errorsBloc,
   }) : super(const PostState.valueObject()) {
     on<_Load>(_onLoadPosts);
     on<_Comments>(_onLoadComments);
@@ -44,6 +48,8 @@ class PostBloc extends Bloc<PostsEvent, PostState> {
     try {
       final listPosts = await getPosts.fetchPosts();
       emit(state.copyWith(posts: listPosts));
+    } on NetworkErrors catch (e) {
+      errorsBloc.add(ErrorsEvent.error(error: e));
     } catch (e) {
       log.e('LOG PostBloc_onLoadPosts error: $e');
       rethrow;
@@ -57,6 +63,8 @@ class PostBloc extends Bloc<PostsEvent, PostState> {
         final listComments = await getComments.fetchComments(idPost: idPost);
         emit(state.copyWith(comments: listComments));
       }
+    } on NetworkErrors catch (e) {
+      errorsBloc.add(ErrorsEvent.error(error: e));
     } catch (e) {
       log.e('LOG PostBloc_onLoadComments error: $e');
       rethrow;

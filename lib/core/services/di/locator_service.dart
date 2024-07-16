@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:placeholder_test/bloc_observer.dart';
+import 'package:placeholder_test/core/utils/bloc_observer.dart';
+import 'package:placeholder_test/src/error/presentation/blocs/error_bloc.dart';
 import 'package:placeholder_test/src/posts/data/data_sources/interface_data_source/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/data_sources/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/repos/post_repo_impl.dart';
@@ -19,8 +20,14 @@ Future<void> init() async {
   // BLoC
   Bloc.observer = AppBlocObserver();
 
+  service.registerFactory(() => ErrorsBloc());
+
   service.registerFactory(
-    () => PostBloc(getPosts: service(), getComments: service()),
+    () => PostBloc(
+      getPosts: service(),
+      getComments: service(),
+      errorsBloc: service(),
+    ),
   );
 
   // Data source

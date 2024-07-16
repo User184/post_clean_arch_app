@@ -1,4 +1,4 @@
-import 'package:placeholder_test/services/local_db/sqlite_db_provider.dart';
+import 'package:placeholder_test/core/services/local_db/sqlite_db_provider.dart';
 import 'package:placeholder_test/src/posts/data/models/extensions/extension_post.dart';
 import 'package:placeholder_test/src/posts/data/models/posts_api_models/post_api_model.dart';
 import 'package:sqflite/sqflite.dart';
