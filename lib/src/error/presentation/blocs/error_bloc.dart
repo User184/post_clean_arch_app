@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:placeholder_test/core/errors/network_error.dart';
+import 'package:placeholder_test/src/error/network_error.dart';
 
 part 'error_bloc.freezed.dart';
 

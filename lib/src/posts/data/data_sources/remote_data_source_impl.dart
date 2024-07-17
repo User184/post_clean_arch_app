@@ -7,19 +7,20 @@ import 'package:placeholder_test/src/posts/data/models/comment_api_models/commen
 import 'package:placeholder_test/src/posts/data/models/posts_api_models/post_api_model.dart';
 import 'package:placeholder_test/core/services/di/locator_service.dart';
 
-class RemoteDataSourceImpl implements RemoteDataSource {
+class RemoteDataSourceImpl extends RemoteDataSource {
   final dio = service.get<Dio>();
 
   @override
-  Future<List<PostApiModel>?> fetchPosts() async {
+  Future<void> fetchPosts() async {
     /// Activated logger
     LogNetwork(dio: dio);
 
+    final listposts = <PostApiModel>[];
+
     try {
       final response =
-          await dio.get('https://jsonplaceholder.typicode.com/post');
+          await dio.get('https://jsonplaceholder.typicode.com/posts');
       final listData = response.data;
-      final listposts = <PostApiModel>[];
 
       if (listData is List) {
         listposts.addAll(
@@ -28,7 +29,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
           ),
         );
       }
-      return listposts;
+      // implement metod from [RemoteDataSource]
+      addToStream(listposts);
     } on DioException catch (e) {
       log.e('LOG fetchPosts network error: ${e.response?.statusCode}');
       throw NetErrorsFactory.produce(e);
@@ -36,7 +38,6 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       log.e('LOG fetchPosts error: $e');
       rethrow;
     }
-    // return null;
   }
 
   @override

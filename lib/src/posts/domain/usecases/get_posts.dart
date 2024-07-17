@@ -6,7 +6,9 @@ class GetPosts {
 
   GetPosts({required this.repo});
 
-  Future<List<Post>?> fetchPosts() async {
+  Stream<List<Post>?> get posts => repo.posts;
+
+  Future<void> fetchPosts() async {
     return await repo.fetchPosts();
   }
 }
