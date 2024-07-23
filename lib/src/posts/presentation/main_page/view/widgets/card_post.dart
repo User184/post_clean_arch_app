@@ -21,15 +21,16 @@ class CardPost extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
+          height: 80,
           decoration: BoxDecoration(
             color: AppColors.cellBackground,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
             children: [
-              const ImagePost(
-                imageUrl: 'https://via.placeholder.com/600/56acb2',
-              ),
+              // const ImagePost(
+              //   imageUrl: 'https://via.placeholder.com/600/56acb2',
+              // ),
               const SizedBox(
                 width: 12,
               ),

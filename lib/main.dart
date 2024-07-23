@@ -40,23 +40,25 @@ void main() async {
       await messaging.getToken().then((m) => print('object22: token: ${m}'));
   //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-//   NotificationSettings settings = await messaging.requestPermission(
-//   alert: true,
-//   announcement: false,
-//   badge: true,
-//   carPlay: false,
-//   criticalAlert: false,
-//   provisional: false,
-//   sound: true,
-// );
+  // NotificationSettings settings = await messaging.requestPermission(
+  //   alert: true,
+  //   announcement: false,
+  //   badge: true,
+  //   carPlay: false,
+  //   criticalAlert: false,
+  //   provisional: false,
+  //   sound: true,
+  // );
 
-// if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-//   print('User granted permission');
-// } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
-//   print('User granted provisional permission');
-// } else {
-//   print('User declined or has not accepted permission');
-// }
+  // if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+  //   print('User granted permission');
+  // } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+  //   print('User granted provisional permission');
+  // } else {
+  //   print('User declined or has not accepted permission');
+  // }
+
+  ///----------------------------------------------
 
   const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -90,10 +92,30 @@ void main() async {
               channel.id,
               channel.name,
               channelDescription: channel.description,
+              icon: 'ic_launcher',
             ),
           ));
     }
+
+    print('object22: flutterLocalNotificationsPlugin: ${message.data}');
   });
+
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('ic_launcher');
+
+  const InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse:
+        (NotificationResponse notificationResponse) {
+      print('object22: onDidReceiveNotificationResponse');
+    },
+  );
+
+  ///----------------------------------------------
 
   runApp(const MyApp());
 }
@@ -143,7 +165,6 @@ class _MyAppState extends State<MyApp> {
                     break;
 
                   case Activity.detail:
-                    print('object22: t: ${state}');
                     _navigator.push(
                       MaterialPageRoute(
                         builder: (context) => const DetailPostScreen(

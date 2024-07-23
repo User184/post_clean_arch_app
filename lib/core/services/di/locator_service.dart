@@ -35,7 +35,6 @@ Future<void> init() async {
   );
 
   service.registerFactory(() => PushBloc(
-        interactedMessageRepo: service(),
         getMassageBackground: service(),
       ));
 

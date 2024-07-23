@@ -12,6 +12,4 @@ abstract class InteractedMessageRepo {
   RemoteMessage? get initialMessage;
 
   Stream<RemoteMessage> get onMessageOpenedApp;
-
-  // StreamSubscription<RemoteMessage> get onMessageOpened;
 }

@@ -14,38 +14,10 @@ class GetMassageBackground {
 
   Future<void> initMessage() async {
     await _interactedMessageRepo.setupInteractedMessage();
-
-    if (initialMessage != null) {
-      _handleMessage(initialMessage!);
-    }
-  }
-
-  void _handleMessage(RemoteMessage message) {
-    print('object22: _handleMessage : $message');
   }
 
   RemoteMessage? get initialMessage => _interactedMessageRepo.initialMessage;
-  // StreamSubscription<RemoteMessage>? get onMessageOpened =>
-  //     _interactedMessageRepo.onMessageOpenedApp?.listen(_handleMessage);
 
   Stream<RemoteMessage> get onMessageOpenedApp =>
       _interactedMessageRepo.onMessageOpenedApp;
-
-  // @override
-  // // TODO: implement initialMessage
-  // RemoteMessage? get initialMessage => throw UnimplementedError();
-
-  // @override
-  // // TODO: implement onMessageOpened
-  // StreamSubscription<RemoteMessage> get onMessageOpened =>
-  //     throw UnimplementedError();
-
-  // @override
-  // Stream<RemoteMessage>? onMessageOpenedApp;
-
-  // @override
-  // Future<void> setupInteractedMessage() {
-  //   // TODO: implement setupInteractedMessage
-  //   throw UnimplementedError();
-  // }
 }
