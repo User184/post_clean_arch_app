@@ -15,6 +15,10 @@ class DetailPostScreen extends StatelessWidget {
     this.post,
   });
 
+  static Route<void> route() {
+    return MaterialPageRoute<void>(builder: (_) => const DetailPostScreen());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

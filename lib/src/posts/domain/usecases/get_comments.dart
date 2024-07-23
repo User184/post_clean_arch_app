@@ -1,8 +1,8 @@
 import 'package:placeholder_test/src/posts/domain/entities/comment.dart';
-import 'package:placeholder_test/src/posts/domain/repos/post_repo_base.dart';
+import 'package:placeholder_test/src/posts/domain/repos/post_repo.dart';
 
 class GetComments {
-  final PostRepoBase repo;
+  final PostRepo repo;
 
   GetComments({required this.repo});
 

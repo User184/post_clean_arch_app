@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "845168956422",
+    "project_id": "post-clean-arch-app",
+    "storage_bucket": "post-clean-arch-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845168956422:android:6b0651688fb6a40e7b9f87",
+        "android_client_info": {
+          "package_name": "com.example.placeholder_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGriubLkPd_F3_c-fYb5Gl-tsAKgCzqEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

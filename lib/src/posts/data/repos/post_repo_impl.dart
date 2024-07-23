@@ -1,9 +1,9 @@
 import 'package:placeholder_test/src/posts/data/data_sources/interface_data_source/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/domain/entities/comment.dart';
 import 'package:placeholder_test/src/posts/domain/entities/post.dart';
-import 'package:placeholder_test/src/posts/domain/repos/post_repo_base.dart';
+import 'package:placeholder_test/src/posts/domain/repos/post_repo.dart';
 
-class PostRepoImpl implements PostRepoBase {
+class PostRepoImpl implements PostRepo {
   final RemoteDataSource remoteDataSource;
 
   PostRepoImpl({required this.remoteDataSource});

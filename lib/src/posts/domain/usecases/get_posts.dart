@@ -1,8 +1,8 @@
 import 'package:placeholder_test/src/posts/domain/entities/post.dart';
-import 'package:placeholder_test/src/posts/domain/repos/post_repo_base.dart';
+import 'package:placeholder_test/src/posts/domain/repos/post_repo.dart';
 
 class GetPosts {
-  final PostRepoBase repo;
+  final PostRepo repo;
 
   GetPosts({required this.repo});
 

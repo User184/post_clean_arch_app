@@ -11,8 +11,8 @@ import 'package:placeholder_test/main.dart';
 import 'package:placeholder_test/src/error/presentation/blocs/error_bloc.dart';
 import 'package:placeholder_test/src/posts/domain/entities/comment.dart';
 import 'package:placeholder_test/src/posts/domain/entities/post.dart';
-import 'package:placeholder_test/src/posts/domain/usecases/get_comments.dart';
-import 'package:placeholder_test/src/posts/domain/usecases/get_posts.dart';
+import 'package:placeholder_test/src/posts/domain/useCases/get_comments.dart';
+import 'package:placeholder_test/src/posts/domain/useCases/get_posts.dart';
 
 part 'post_bloc.freezed.dart';
 

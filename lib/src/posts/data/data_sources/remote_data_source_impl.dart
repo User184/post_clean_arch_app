@@ -13,7 +13,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   @override
   Future<void> fetchPosts() async {
     /// Activated logger
-    LogNetwork(dio: dio);
+    // LogNetwork(dio: dio);
 
     final listposts = <PostApiModel>[];
 

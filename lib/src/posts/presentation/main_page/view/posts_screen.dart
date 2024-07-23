@@ -11,6 +11,10 @@ class PostsScreen extends StatefulWidget {
     super.key,
   });
 
+  static Route<void> route() {
+    return MaterialPageRoute<void>(builder: (_) => const PostsScreen());
+  }
+
   /// To find PostsScreenState in context
   static PostsScreenState? of(BuildContext context) =>
       context.findAncestorStateOfType<PostsScreenState>();
