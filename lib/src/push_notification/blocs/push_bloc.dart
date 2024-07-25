@@ -68,10 +68,6 @@ class PushBloc extends Bloc<PushEvent, PushState> {
 
   void _subscraibeMessage() {
     add(const PushEvent.changeStatus());
-    void handleMessage(RemoteMessage message) {
-      log.i('PushBloc, _subscribe/handleMessage: $message');
-      add(const PushEvent.receive());
-    }
 
     // Get any messages which caused the application to open from
     // a terminated state.
@@ -79,9 +75,15 @@ class PushBloc extends Bloc<PushEvent, PushState> {
     if (remoteMessage != null) {
       handleMessage(remoteMessage);
     }
-    subscription = _getMassageBackground.onMessageOpenedApp.listen(
+
+    // A Stream which posts a RemoteMessage when the application is opened from a background state.
+    subscription = _getMassageBackground.subscriptionRemoteMessage(
       handleMessage,
-      onError: (error) => log.e('PushBloc, error _subscribe: $error'),
     );
+  }
+
+  void handleMessage(RemoteMessage message) {
+    log.i('PushBloc, _subscribe/handleMessage: $message');
+    add(const PushEvent.receive());
   }
 }

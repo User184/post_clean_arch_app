@@ -18,6 +18,8 @@ class GetMassageBackground {
 
   RemoteMessage? get initialMessage => _interactedMessageRepo.initialMessage;
 
-  Stream<RemoteMessage> get onMessageOpenedApp =>
-      _interactedMessageRepo.onMessageOpenedApp;
+  StreamSubscription<RemoteMessage> subscriptionRemoteMessage(
+      Function(RemoteMessage message) handleMessage) {
+    return _interactedMessageRepo.onMessageOpenedApp.listen(handleMessage);
+  }
 }
