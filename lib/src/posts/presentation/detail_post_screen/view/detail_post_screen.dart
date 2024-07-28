@@ -35,10 +35,10 @@ class DetailPostScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 26),
                     child: Column(
                       children: [
-                        const ImagePost(
-                          imageUrl: 'https://via.placeholder.com/600/56acb2',
-                          padding: EdgeInsets.symmetric(vertical: 28),
-                        ),
+                        // const ImagePost(
+                        //   imageUrl: 'https://via.placeholder.com/600/56acb2',
+                        //   padding: EdgeInsets.symmetric(vertical: 28),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 36)
                               .copyWith(bottom: 26),

@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:logger/logger.dart';
 import 'package:placeholder_test/constans/app_colors.dart';
 import 'package:placeholder_test/firebase_options.dart';
@@ -17,14 +16,6 @@ import 'src/posts/presentation/main_page/view/posts_screen.dart';
 
 Logger log = Logger(printer: PrettyPrinter());
 
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   // If you're going to use other Firebase services in the background, such as Firestore,
-//   // make sure you call `initializeApp` before using other Firebase services.
-//   await Firebase.initializeApp();
-
-//   print("Handling a background message: ${message.messageId}");
-// }
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //TODO: убрать
@@ -38,7 +29,6 @@ void main() async {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   final token =
       await messaging.getToken().then((m) => print('object22: token: ${m}'));
-  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // NotificationSettings settings = await messaging.requestPermission(
   //   alert: true,
@@ -57,65 +47,6 @@ void main() async {
   // } else {
   //   print('User declined or has not accepted permission');
   // }
-
-  ///----------------------------------------------
-
-  const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    description:
-        'This channel is used for important notifications.', // description
-    importance: Importance.max,
-  );
-
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    RemoteNotification? notification = message.notification;
-    AndroidNotification? android = message.notification?.android;
-
-    // If `onMessage` is triggered with a notification, construct our own
-    // local notification to show to users using the created channel.
-    if (notification != null && android != null) {
-      flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: AndroidNotificationDetails(
-              channel.id,
-              channel.name,
-              channelDescription: channel.description,
-              icon: 'ic_launcher',
-            ),
-          ));
-    }
-
-    print('object22: flutterLocalNotificationsPlugin: ${message.data}');
-  });
-
-  const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('ic_launcher');
-
-  const InitializationSettings initializationSettings = InitializationSettings(
-    android: initializationSettingsAndroid,
-  );
-
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-    onDidReceiveNotificationResponse:
-        (NotificationResponse notificationResponse) {
-      print('object22: onDidReceiveNotificationResponse');
-    },
-  );
-
-  ///----------------------------------------------
 
   runApp(const MyApp());
 }
@@ -186,7 +117,7 @@ class _MyAppState extends State<MyApp> {
           onGenerateRoute: (_) => PostsScreen.route(),
           routes: {
             '/': (context) => const PostsScreen(),
-            '/detailMyBook': (context) => const DetailPostScreen(),
+            '/detail': (context) => const DetailPostScreen(),
           },
         ),
       ),

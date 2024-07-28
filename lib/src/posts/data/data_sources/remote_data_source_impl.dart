@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:placeholder_test/src/error/network_error.dart';
 import 'package:placeholder_test/main.dart';
-import 'package:placeholder_test/core/services/network/log_network.dart';
 import 'package:placeholder_test/src/posts/data/data_sources/interface_data_source/remote_data_source.dart';
 import 'package:placeholder_test/src/posts/data/models/comment_api_models/comment_api_model.dart';
 import 'package:placeholder_test/src/posts/data/models/posts_api_models/post_api_model.dart';

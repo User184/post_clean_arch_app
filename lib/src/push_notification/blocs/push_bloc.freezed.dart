@@ -18,43 +18,43 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$PushEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subscription,
-    required TResult Function() receive,
+    required TResult Function() init,
+    required TResult Function(Message? message) receive,
     required TResult Function() changeStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? subscription,
-    TResult? Function()? receive,
+    TResult? Function()? init,
+    TResult? Function(Message? message)? receive,
     TResult? Function()? changeStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subscription,
-    TResult Function()? receive,
+    TResult Function()? init,
+    TResult Function(Message? message)? receive,
     TResult Function()? changeStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Subscription value) subscription,
+    required TResult Function(Init value) init,
     required TResult Function(Receive value) receive,
     required TResult Function(ChangeStatus value) changeStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Subscription value)? subscription,
+    TResult? Function(Init value)? init,
     TResult? Function(Receive value)? receive,
     TResult? Function(ChangeStatus value)? changeStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Subscription value)? subscription,
+    TResult Function(Init value)? init,
     TResult Function(Receive value)? receive,
     TResult Function(ChangeStatus value)? changeStatus,
     required TResult orElse(),
@@ -80,35 +80,34 @@ class _$PushEventCopyWithImpl<$Res, $Val extends PushEvent>
 }
 
 /// @nodoc
-abstract class _$$SubscriptionImplCopyWith<$Res> {
-  factory _$$SubscriptionImplCopyWith(
-          _$SubscriptionImpl value, $Res Function(_$SubscriptionImpl) then) =
-      __$$SubscriptionImplCopyWithImpl<$Res>;
+abstract class _$$InitImplCopyWith<$Res> {
+  factory _$$InitImplCopyWith(
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SubscriptionImplCopyWithImpl<$Res>
-    extends _$PushEventCopyWithImpl<$Res, _$SubscriptionImpl>
-    implements _$$SubscriptionImplCopyWith<$Res> {
-  __$$SubscriptionImplCopyWithImpl(
-      _$SubscriptionImpl _value, $Res Function(_$SubscriptionImpl) _then)
+class __$$InitImplCopyWithImpl<$Res>
+    extends _$PushEventCopyWithImpl<$Res, _$InitImpl>
+    implements _$$InitImplCopyWith<$Res> {
+  __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SubscriptionImpl extends Subscription {
-  const _$SubscriptionImpl() : super._();
+class _$InitImpl extends Init {
+  const _$InitImpl() : super._();
 
   @override
   String toString() {
-    return 'PushEvent.subscription()';
+    return 'PushEvent.init()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SubscriptionImpl);
+        (other.runtimeType == runtimeType && other is _$InitImpl);
   }
 
   @override
@@ -117,33 +116,33 @@ class _$SubscriptionImpl extends Subscription {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subscription,
-    required TResult Function() receive,
+    required TResult Function() init,
+    required TResult Function(Message? message) receive,
     required TResult Function() changeStatus,
   }) {
-    return subscription();
+    return init();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? subscription,
-    TResult? Function()? receive,
+    TResult? Function()? init,
+    TResult? Function(Message? message)? receive,
     TResult? Function()? changeStatus,
   }) {
-    return subscription?.call();
+    return init?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subscription,
-    TResult Function()? receive,
+    TResult Function()? init,
+    TResult Function(Message? message)? receive,
     TResult Function()? changeStatus,
     required TResult orElse(),
   }) {
-    if (subscription != null) {
-      return subscription();
+    if (init != null) {
+      return init();
     }
     return orElse();
   }
@@ -151,41 +150,41 @@ class _$SubscriptionImpl extends Subscription {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Subscription value) subscription,
+    required TResult Function(Init value) init,
     required TResult Function(Receive value) receive,
     required TResult Function(ChangeStatus value) changeStatus,
   }) {
-    return subscription(this);
+    return init(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Subscription value)? subscription,
+    TResult? Function(Init value)? init,
     TResult? Function(Receive value)? receive,
     TResult? Function(ChangeStatus value)? changeStatus,
   }) {
-    return subscription?.call(this);
+    return init?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Subscription value)? subscription,
+    TResult Function(Init value)? init,
     TResult Function(Receive value)? receive,
     TResult Function(ChangeStatus value)? changeStatus,
     required TResult orElse(),
   }) {
-    if (subscription != null) {
-      return subscription(this);
+    if (init != null) {
+      return init(this);
     }
     return orElse();
   }
 }
 
-abstract class Subscription extends PushEvent {
-  const factory Subscription() = _$SubscriptionImpl;
-  const Subscription._() : super._();
+abstract class Init extends PushEvent {
+  const factory Init() = _$InitImpl;
+  const Init._() : super._();
 }
 
 /// @nodoc
@@ -193,6 +192,8 @@ abstract class _$$ReceiveImplCopyWith<$Res> {
   factory _$$ReceiveImplCopyWith(
           _$ReceiveImpl value, $Res Function(_$ReceiveImpl) then) =
       __$$ReceiveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Message? message});
 }
 
 /// @nodoc
@@ -202,57 +203,81 @@ class __$$ReceiveImplCopyWithImpl<$Res>
   __$$ReceiveImplCopyWithImpl(
       _$ReceiveImpl _value, $Res Function(_$ReceiveImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$ReceiveImpl(
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as Message?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ReceiveImpl extends Receive {
-  const _$ReceiveImpl() : super._();
+  const _$ReceiveImpl({this.message}) : super._();
+
+  @override
+  final Message? message;
 
   @override
   String toString() {
-    return 'PushEvent.receive()';
+    return 'PushEvent.receive(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ReceiveImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ReceiveImpl &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ReceiveImplCopyWith<_$ReceiveImpl> get copyWith =>
+      __$$ReceiveImplCopyWithImpl<_$ReceiveImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subscription,
-    required TResult Function() receive,
+    required TResult Function() init,
+    required TResult Function(Message? message) receive,
     required TResult Function() changeStatus,
   }) {
-    return receive();
+    return receive(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? subscription,
-    TResult? Function()? receive,
+    TResult? Function()? init,
+    TResult? Function(Message? message)? receive,
     TResult? Function()? changeStatus,
   }) {
-    return receive?.call();
+    return receive?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subscription,
-    TResult Function()? receive,
+    TResult Function()? init,
+    TResult Function(Message? message)? receive,
     TResult Function()? changeStatus,
     required TResult orElse(),
   }) {
     if (receive != null) {
-      return receive();
+      return receive(message);
     }
     return orElse();
   }
@@ -260,7 +285,7 @@ class _$ReceiveImpl extends Receive {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Subscription value) subscription,
+    required TResult Function(Init value) init,
     required TResult Function(Receive value) receive,
     required TResult Function(ChangeStatus value) changeStatus,
   }) {
@@ -270,7 +295,7 @@ class _$ReceiveImpl extends Receive {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Subscription value)? subscription,
+    TResult? Function(Init value)? init,
     TResult? Function(Receive value)? receive,
     TResult? Function(ChangeStatus value)? changeStatus,
   }) {
@@ -280,7 +305,7 @@ class _$ReceiveImpl extends Receive {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Subscription value)? subscription,
+    TResult Function(Init value)? init,
     TResult Function(Receive value)? receive,
     TResult Function(ChangeStatus value)? changeStatus,
     required TResult orElse(),
@@ -293,8 +318,13 @@ class _$ReceiveImpl extends Receive {
 }
 
 abstract class Receive extends PushEvent {
-  const factory Receive() = _$ReceiveImpl;
+  const factory Receive({final Message? message}) = _$ReceiveImpl;
   const Receive._() : super._();
+
+  Message? get message;
+  @JsonKey(ignore: true)
+  _$$ReceiveImplCopyWith<_$ReceiveImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -335,8 +365,8 @@ class _$ChangeStatusImpl extends ChangeStatus {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() subscription,
-    required TResult Function() receive,
+    required TResult Function() init,
+    required TResult Function(Message? message) receive,
     required TResult Function() changeStatus,
   }) {
     return changeStatus();
@@ -345,8 +375,8 @@ class _$ChangeStatusImpl extends ChangeStatus {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? subscription,
-    TResult? Function()? receive,
+    TResult? Function()? init,
+    TResult? Function(Message? message)? receive,
     TResult? Function()? changeStatus,
   }) {
     return changeStatus?.call();
@@ -355,8 +385,8 @@ class _$ChangeStatusImpl extends ChangeStatus {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? subscription,
-    TResult Function()? receive,
+    TResult Function()? init,
+    TResult Function(Message? message)? receive,
     TResult Function()? changeStatus,
     required TResult orElse(),
   }) {
@@ -369,7 +399,7 @@ class _$ChangeStatusImpl extends ChangeStatus {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Subscription value) subscription,
+    required TResult Function(Init value) init,
     required TResult Function(Receive value) receive,
     required TResult Function(ChangeStatus value) changeStatus,
   }) {
@@ -379,7 +409,7 @@ class _$ChangeStatusImpl extends ChangeStatus {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Subscription value)? subscription,
+    TResult? Function(Init value)? init,
     TResult? Function(Receive value)? receive,
     TResult? Function(ChangeStatus value)? changeStatus,
   }) {
@@ -389,7 +419,7 @@ class _$ChangeStatusImpl extends ChangeStatus {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Subscription value)? subscription,
+    TResult Function(Init value)? init,
     TResult Function(Receive value)? receive,
     TResult Function(ChangeStatus value)? changeStatus,
     required TResult orElse(),

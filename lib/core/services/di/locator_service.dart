@@ -11,9 +11,12 @@ import 'package:placeholder_test/src/posts/domain/useCases/get_comments.dart';
 import 'package:placeholder_test/src/posts/domain/useCases/get_posts.dart';
 import 'package:placeholder_test/src/posts/presentation/main_page/blocs/post_bloc.dart';
 import 'package:placeholder_test/src/push_notification/blocs/push_bloc.dart';
-import 'package:placeholder_test/src/push_notification/data/repos/Interacted_message_repo_impl.dart';
-import 'package:placeholder_test/src/push_notification/domain/repos/Interacted_message_repo.dart';
+import 'package:placeholder_test/src/push_notification/data/repos/backgrond_message_repo_impl.dart';
+import 'package:placeholder_test/src/push_notification/data/repos/foreground_message_repo_impl.dart';
+import 'package:placeholder_test/src/push_notification/domain/repos/background_message_repo.dart';
+import 'package:placeholder_test/src/push_notification/domain/repos/foreground_message_repo.dart';
 import 'package:placeholder_test/src/push_notification/domain/useCases/getMessageBacground.dart';
+import 'package:placeholder_test/src/push_notification/domain/useCases/getMessageForeground.dart';
 
 final service = GetIt.instance;
 
@@ -36,6 +39,7 @@ Future<void> init() async {
 
   service.registerFactory(() => PushBloc(
         getMassageBackground: service(),
+        getmessageForeground: service(),
       ));
 
   // Data source
@@ -44,14 +48,18 @@ Future<void> init() async {
   // Repository
   service.registerLazySingleton<PostRepo>(
       () => PostRepoImpl(remoteDataSource: service()));
-  service.registerLazySingleton<InteractedMessageRepo>(
-      () => InteractedMessageRepoImpl());
+  service.registerLazySingleton<BackgroundMessageRepo>(
+      () => BackgroundMessageRepoImpl());
+  service.registerLazySingleton<ForegroundMessageRepo>(
+      () => ForegroundMessageRepoImpl());
 
   // UseCases
   service.registerLazySingleton(() => GetPosts(repo: service()));
   service.registerLazySingleton(() => GetComments(repo: service()));
   service.registerLazySingleton(
       () => GetMassageBackground(interactedMessageRepo: service()));
+  service.registerLazySingleton(
+      () => GetmessageForeground(foregroundMessageRepo: service()));
 
   // service.registerLazySingleton<PersonLocalDataSource>(
   //   () => Perences: service()),rsonLocalDataSourceImpl(sharedPrefe
