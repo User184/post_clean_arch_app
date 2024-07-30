@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
@@ -25,10 +24,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  FirebaseMessaging messaging = FirebaseMessaging.instance;
-  final token =
-      await messaging.getToken().then((m) => print('object22: token: ${m}'));
 
   // NotificationSettings settings = await messaging.requestPermission(
   //   alert: true,
@@ -98,12 +93,12 @@ class _MyAppState extends State<MyApp> {
                   case Activity.detail:
                     _navigator.push(
                       MaterialPageRoute(
-                        builder: (context) => const DetailPostScreen(
+                        builder: (context) => DetailPostScreen(
                           post: Post(
                             id: 1,
                             userId: 1,
-                            title: 'Test',
-                            body: 'Test discription',
+                            title: state.message?.title,
+                            body: state.message?.body,
                           ),
                         ),
                       ),

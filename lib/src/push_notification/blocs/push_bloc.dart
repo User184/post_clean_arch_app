@@ -24,6 +24,7 @@ class PushState with _$PushState {
   const PushState._();
   const factory PushState.valueObject({
     @Default(Activity.unknown) Activity status,
+    Message? message,
   }) = _State;
 }
 
@@ -55,12 +56,19 @@ class PushBloc extends Bloc<PushEvent, PushState> {
     final initialMessage = _getMassageBackground.terminatedStateMessage;
 
     if (initialMessage != null) {
-      emit(state.copyWith(status: Activity.detail));
+      emit(state.copyWith(
+        message: initialMessage,
+        status: Activity.detail,
+      ));
     }
   }
 
   Future<void> _onReceiveMessage(Receive event, Emitter<PushState> emit) async {
-    emit(state.copyWith(status: Activity.detail));
+    final message = event.message;
+    emit(state.copyWith(
+      message: message,
+      status: Activity.detail,
+    ));
   }
 
   Future<void> _onResetStatus(

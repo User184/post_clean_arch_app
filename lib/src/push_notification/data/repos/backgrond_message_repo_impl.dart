@@ -5,9 +5,18 @@ import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:placeholder_test/main.dart';
 import 'package:placeholder_test/src/push_notification/data/models/message_api_model.dart';
+import 'package:placeholder_test/src/push_notification/data/repos/setup_token_repo.dart';
+import 'package:placeholder_test/src/push_notification/data/repos/submit_topic_repo.dart';
 import 'package:placeholder_test/src/push_notification/domain/repos/background_message_repo.dart';
 
 class BackgroundMessageRepoImpl extends BackgroundMessageRepo {
+  final SetupTokenRepo setupTokenRepo;
+  final SubmitTopicRepo submitTopicRepo;
+  BackgroundMessageRepoImpl({
+    required this.setupTokenRepo,
+    required this.submitTopicRepo,
+  });
+
   MessageApiModel? _initialMessage;
 
   @override
@@ -15,6 +24,11 @@ class BackgroundMessageRepoImpl extends BackgroundMessageRepo {
 
   @override
   Future<void> setupInteractedMessage() async {
+    setupTokenRepo.setupToken();
+
+    //TODO: добавить логику с запросами на подписку/отписку на сервер
+    await submitTopicRepo.subscribeToTopic('test_topic');
+
     // Handling messages whilst your application is in the background.
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 

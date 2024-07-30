@@ -439,19 +439,20 @@ abstract class ChangeStatus extends PushEvent {
 /// @nodoc
 mixin _$PushState {
   Activity get status => throw _privateConstructorUsedError;
+  Message? get message => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Activity status) valueObject,
+    required TResult Function(Activity status, Message? message) valueObject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Activity status)? valueObject,
+    TResult? Function(Activity status, Message? message)? valueObject,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Activity status)? valueObject,
+    TResult Function(Activity status, Message? message)? valueObject,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -482,7 +483,7 @@ abstract class $PushStateCopyWith<$Res> {
   factory $PushStateCopyWith(PushState value, $Res Function(PushState) then) =
       _$PushStateCopyWithImpl<$Res, PushState>;
   @useResult
-  $Res call({Activity status});
+  $Res call({Activity status, Message? message});
 }
 
 /// @nodoc
@@ -499,12 +500,17 @@ class _$PushStateCopyWithImpl<$Res, $Val extends PushState>
   @override
   $Res call({
     Object? status = null,
+    Object? message = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Activity,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as Message?,
     ) as $Val);
   }
 }
@@ -516,7 +522,7 @@ abstract class _$$StateImplCopyWith<$Res> implements $PushStateCopyWith<$Res> {
       __$$StateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Activity status});
+  $Res call({Activity status, Message? message});
 }
 
 /// @nodoc
@@ -531,12 +537,17 @@ class __$$StateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? message = freezed,
   }) {
     return _then(_$StateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Activity,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as Message?,
     ));
   }
 }
@@ -544,15 +555,17 @@ class __$$StateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StateImpl extends _State {
-  const _$StateImpl({this.status = Activity.unknown}) : super._();
+  const _$StateImpl({this.status = Activity.unknown, this.message}) : super._();
 
   @override
   @JsonKey()
   final Activity status;
+  @override
+  final Message? message;
 
   @override
   String toString() {
-    return 'PushState.valueObject(status: $status)';
+    return 'PushState.valueObject(status: $status, message: $message)';
   }
 
   @override
@@ -560,11 +573,12 @@ class _$StateImpl extends _State {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StateImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -575,27 +589,27 @@ class _$StateImpl extends _State {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Activity status) valueObject,
+    required TResult Function(Activity status, Message? message) valueObject,
   }) {
-    return valueObject(status);
+    return valueObject(status, message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Activity status)? valueObject,
+    TResult? Function(Activity status, Message? message)? valueObject,
   }) {
-    return valueObject?.call(status);
+    return valueObject?.call(status, message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Activity status)? valueObject,
+    TResult Function(Activity status, Message? message)? valueObject,
     required TResult orElse(),
   }) {
     if (valueObject != null) {
-      return valueObject(status);
+      return valueObject(status, message);
     }
     return orElse();
   }
@@ -630,11 +644,14 @@ class _$StateImpl extends _State {
 }
 
 abstract class _State extends PushState {
-  const factory _State({final Activity status}) = _$StateImpl;
+  const factory _State({final Activity status, final Message? message}) =
+      _$StateImpl;
   const _State._() : super._();
 
   @override
   Activity get status;
+  @override
+  Message? get message;
   @override
   @JsonKey(ignore: true)
   _$$StateImplCopyWith<_$StateImpl> get copyWith =>

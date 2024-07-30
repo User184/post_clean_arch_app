@@ -13,6 +13,8 @@ import 'package:placeholder_test/src/posts/presentation/main_page/blocs/post_blo
 import 'package:placeholder_test/src/push_notification/blocs/push_bloc.dart';
 import 'package:placeholder_test/src/push_notification/data/repos/backgrond_message_repo_impl.dart';
 import 'package:placeholder_test/src/push_notification/data/repos/foreground_message_repo_impl.dart';
+import 'package:placeholder_test/src/push_notification/data/repos/setup_token_repo.dart';
+import 'package:placeholder_test/src/push_notification/data/repos/submit_topic_repo.dart';
 import 'package:placeholder_test/src/push_notification/domain/repos/background_message_repo.dart';
 import 'package:placeholder_test/src/push_notification/domain/repos/foreground_message_repo.dart';
 import 'package:placeholder_test/src/push_notification/domain/useCases/getMessageBacground.dart';
@@ -49,9 +51,14 @@ Future<void> init() async {
   service.registerLazySingleton<PostRepo>(
       () => PostRepoImpl(remoteDataSource: service()));
   service.registerLazySingleton<BackgroundMessageRepo>(
-      () => BackgroundMessageRepoImpl());
+      () => BackgroundMessageRepoImpl(
+            setupTokenRepo: service(),
+            submitTopicRepo: service(),
+          ));
   service.registerLazySingleton<ForegroundMessageRepo>(
       () => ForegroundMessageRepoImpl());
+  service.registerLazySingleton(() => SetupTokenRepo());
+  service.registerLazySingleton(() => SubmitTopicRepo());
 
   // UseCases
   service.registerLazySingleton(() => GetPosts(repo: service()));
